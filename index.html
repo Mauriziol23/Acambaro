@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<title>Acambaro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" type="image/png" href="assets/smallicon.jpeg">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"> -->
+<link href="https://fonts.googleapis.com/css?family=Galada&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Raleway", sans-serif
+    }
+
+    h1 {
+        font-family: 'Galada', cursive;
+    }
+
+    body,
+    html {
+        height: 100%;
+        line-height: 1.8;
+    }
+
+    /* Full height image header */
+
+    /* .bgimg-1 {
+        background-position: center;
+        background-image: url("assets/test2.jpg");
+        background-repeat: no-repeat;
+  background-size: cover;
+        height: 100%;
+   
+    }
+    @media (max-width: 650px) {
+        .bgimg-1 {
+            background-image: url("assets/Chris_ladder.jpeg");
+            min-height: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+    } */
+
+    .circle-image {
+        width: 25% !important;
+        text-align: center;
+
+    }
+
+
+
+    @media (max-width: 650px) {
+        .circle-image {
+            width: 75% !important;
+            text-align: center;
+        }
+    }
+
+    .small-circle-image {
+        width: 15% !important;
+        text-align: center;
+
+    }
+
+    @media (max-width: 650px) {
+        .small-circle-image {
+            width: 35% !important;
+            text-align: center;
+        }
+    }
+
+    .w3-bar .w3-button {
+        padding: 16px;
+    }
+
+    /* 
+    table stuff */
+
+    .table-left {
+        border-collapse: collapse;
+        width: 50%;
+        float: left;
+
+    }
+
+    .table-center {
+        border-collapse: collapse;
+        width: 50%;
+        margin: auto;
+
+
+    }
+
+    th,
+    td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        color: #000 !important;
+        background-color: #f2f2f2 !important
+    }
+
+    tr:nth-child(odd) {
+        color: #000 !important;
+        background-color: #fff !important
+    }
+
+    th {
+        color: #000 !important;
+        background-color: #CA8D4B !important
+    }
+
+    /* 
+map stuff */
+
+    /* Set the size of the div element that contains the map */
+
+    #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+    }
+
+
+    .flex2 {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+    }
+
+    .flex-child2 {
+        -webkit-box-flex: 1 1 auto;
+        -moz-box-flex: 1 1 auto;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        margin-right: 5px;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white-black w3-card" id="myNavbar">
+            <a href="#home" class="w3-bar-item w3-button w3-wide" style="padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 0px;
+            padding-right: 5px;
+           ">
+                <img class="w3-image w3-round-small" type="image/jpg" src="assets/logoPNG.png" alt="Logo" width="200" height="200">
+            </a>
+            <!-- Right-sided navbar links -->
+            <div class="w3-right w3-hide-small w3-bold" style="padding-top: 32px;">
+                <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+                <a href="#locations" class="w3-bar-item w3-button">LOCATIONS</a>
+                <!-- <a href="#review" class="w3-bar-item w3-button"> REVIEWS</a> -->
+                <a href="#gallery" class="w3-bar-item w3-button"> GALLERY</a>
+                <a href="#catering" class="w3-bar-item w3-button"> CATERING</a>
+                <a href="#contact" class="w3-bar-item w3-button"> CONTACT</a>
+            </div>
+            <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()" style="padding:32px !important;">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+        <a href="#locations" onclick="w3_close()" class="w3-bar-item w3-button">LOCATIONS</a>
+        <!-- <a href="#review" onclick="w3_close()" class="w3-bar-item w3-button">REVIEWS</a> -->
+        <a href="#gallery" onclick="w3_close()" class="w3-bar-item w3-button">GALLERY</a>
+        <a href="#catering" onclick="w3_close()" class="w3-bar-item w3-button">CATERING</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+    </nav>
+
+    <!-- Header with full-height image -->
+    <header class="bgimg-1 w3-display-container" id="home">
+        <div class=" w3-container" style="padding:72px; padding-top:10em;">
+            <br>
+            <br>
+            <div class="w3-center">
+
+
+                <!-- <span class="w3-jumbo w3-hide-small w3-white" style="padding-top:20px;">Acambaro Mexican Restaurant</span>
+                
+                <span class="w3-xxlarge w3-hide-large w3-hide-medium  w3-white">Acambaro Mexican Restaurant</span>
+            -->
+            </div>
+        </div>
+        <!-- <span class="w3-xlarge w3-text-white">Excellence in every aspect of our business.</span> -->
+        <div class="flex2">
+            <p>
+                <a href="assets/full_menu.jpeg" target="_blank" class="w3-center w3-button w3-blueish w3-padding-medium w3-large w3-margin-top flex-child2">Menu</a>
+            </p>
+            <p>
+                <a href="#catering" class="w3-center w3-button w3-blueish w3-padding-medium w3-large w3-margin-top flex-child2">Catering</a>
+            </p>
+            <p>
+                <a href="#locations" class="w3-center w3-button w3-blueish w3-padding-medium w3-large w3-margin-top flex-child2">Locations</a>
+            </p>
+        </div>
+
+    </header>
+
+    <!-- About Section -->
+    <div class="back-red w3-container" style= "padding-top:128px; padding-left:16px; padding-right:16px;" id="about">
+        <h1 class="w3-center" >ABOUT US</h1>
+        <div class="w3-center">
+            <img class="circle-image" src="assets/circle-cropped.png">
+        </div>
+        <p class="w3-center w3-xlarge">Acambaro Mexican Restaurant, providing fresh and authentic Mexican dishes to the North West Arkansas area since 200X</p>
+
+        <div class="flex2">
+            <a class="w3-center w3-button w3-blueish w3-padding-medium w3-large w3-margin-top flex-child2" onclick="document.getElementById('learn').style.display='block'">Learn more about us!</a>
+        </div>
+
+    
+        
+
+
+    </div>
+
+      <!-- Oats Modal -->
+      <div id="learn" class="w3-modal">
+        <div class="w3-modal-content Mau-animate-zoom">
+            <div class="Mau-container back-red w3-display-container">
+                <span onclick="document.getElementById('learn').style.display='none'" class="w3-button w3-display-topright w3-xlarge">x</span>
+                <h1 style="padding-left: 10px;">Our Story</h1>
+            </div>
+       
+            <div class="w3-container back-pastel-white">
+                <div class="w3-row">
+                    <div class="w3-third w3-container">
+                        
+                    </div>
+                    <div class="w3-container">
+                        <h4>Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here. 
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here.
+                           
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here.
+                            <br>
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here. 
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here.
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here. 
+                            Jairo to provide more information here. Jairo to provide more information here. Jairo to provide more information here.
+                        </h4>
+                    </div>
+                </div>
+                <!-- oats assets -->
+                <div class="w3-container w3-center">
+                    <div onclick="document.getElementById('oats').style.display='block'">
+                        <img src="assets/team.jpg" style="width:90%">
+                        <h4>Image Desc.</h4>
+                    </div>
+                </div>
+                <div class="w3-half w3-container">
+                    <div class="w3-border-amber">
+                        <img src="assets/team.jpg" style="width:100%">
+                        <h4>Image Desc.</h4>
+                    </div>
+                </div>
+                <div class="w3-half w3-container">
+                    <div class="w3-border-amber">
+                        <img src="assets/team.jpg" style="width:100%">
+                        <h4>Image Desc.</h4>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Main Service Section  -->
+    <div class="w3-container w3-light-grey" style="padding:128px 16px" id="locations">
+        <h1 class="w3-center ">OUR LOCATIONS</h1>
+        <p class="w3-large w3-center">So good we had to open multiple locations!</p>
+     
+        <div class="w3-center" style="margin-top:64px">
+            <!-- <div class="w3-third">
+                    <img src="assets/logoPNG.png" alt="Logo" style="width:100%">
+                <h3> <b>Fayetteville, AR </b></h3>
+                <p>Address: 2605 N College Ave, Fayetteville, AR 72703</p>
+                <p>Phone #: (479) 442-3454 </p>
+                 <ul style="list-style-type:none; text-align:center;">
+                        <li><b>Sunday</b>	11AM–3:30PM</li>
+                        <li> <b>Monday</b>	11AM–9PM</li>
+                        <li><b>Tuesday</b>	11AM–9PM</li>
+                        <li><b>Wednesday</b> 11AM–9PM</li>
+                        <li><b>Thursday</b> 11AM–9PM</li>
+                        <li><b>Friday</b>	11AM–10PM</li>
+                        <li><b>Saturday</b> 11AM–10PM</li>
+                      </ul>
+            </div> -->
+            <div class="w3-half">
+                    <img src="assets/logoPNG.png" alt="Logo" style="width:75%">
+                <h3> <b>Springdale, AR </b></h3>
+                <p>Address: 121 N Thompson St, Springdale, AR 72764</p>
+                <p>Phone #: (479) 927-3822 </p>
+                <ul style="list-style-type:none; text-align:center;">
+                        <li><b>Sunday</b>	11AM–9PM</li>
+                        <li> <b>Monday</b>	11AM–9PM</li>
+                        <li><b>Tuesday</b>	11AM–9PM</li>
+                        <li><b>Wednesday</b> 11AM–9PM</li>
+                        <li><b>Thursday</b> 11AM–9PM</li>
+                        <li><b>Friday</b>	11AM–10PM</li>
+                        <li><b>Saturday</b> 11AM–10PM</li>
+                      </ul>
+            </div>
+            <div class="w3-half">
+                    <img src="assets/logoPNG.png" alt="Logo" style="width:75%">
+                <h3> <b>Rogers, AR </b></h3>
+                <p>Address: 215 S 8th St, Rogers, AR 72756</p>
+                <p>Phone #: (479) 986-9901 </p>
+                <ul style="list-style-type:none; text-align:center;">
+                        <li><b>Sunday</b>	11AM–9PM</li>
+                        <li> <b>Monday</b>	11AM–9PM</li>
+                        <li><b>Tuesday</b>	11AM–9PM</li>
+                        <li><b>Wednesday</b> 11AM–9PM</li>
+                        <li><b>Thursday</b> 11AM–9PM</li>
+                        <li><b>Friday</b>	11AM–10PM</li>
+                        <li><b>Saturday</b> 11AM–10PM</li>
+                      </ul>
+            </div>
+        </div>
+        <div class="w3-center" style="margin-top:64px">
+                
+                 <div class="w3-half">
+                         <img src="assets/logoPNG.png" alt="Logo" style="width:75%">
+                     <h3> <b>Lowell, AR </b></h3>
+                     <p>Address: 406 N Bloomington St, Lowell, AR 72745</p>
+                     <p>Phone #: (479) 659-8919 </p>
+                     <ul style="list-style-type:none; text-align:center;">
+                             <li><b>Sunday</b>	9AM–9PM</li>
+                             <li> <b>Monday</b>	11AM–9PM</li>
+                             <li><b>Tuesday</b>	11AM–9PM</li>
+                             <li><b>Wednesday</b> 11AM–9PM</li>
+                             <li><b>Thursday</b> 11AM–9PM</li>
+                             <li><b>Friday</b>	9AM–10PM</li>
+                             <li><b>Saturday</b> 9AM–10PM</li>
+                           </ul>
+                 </div>
+                 <div class="w3-half">
+                         <img src="assets/logoPNG.png" alt="Logo" style="width:75%">
+                     <h3> <b>Bentonville, AR </b></h3>
+                     <p>Address: 301 S Walton Blvd, Bentonville, AR 72712</p>
+                     <p>Phone #: (479) 464-8171 </p>
+                     <ul style="list-style-type:none; text-align:center;">
+                             <li><b>Sunday</b>	11AM–9PM</li>
+                             <li> <b>Monday</b>	11AM–9PM</li>
+                             <li><b>Tuesday</b>	11AM–9PM</li>
+                             <li><b>Wednesday</b> 11AM–9PM</li>
+                             <li><b>Thursday</b> 11AM–9PM</li>
+                             <li><b>Friday</b>	11AM–10PM</li>
+                             <li><b>Saturday</b> 11AM–10PM</li>
+                           </ul>
+                 </div>
+             </div>
+    </div>
+    
+
+<!-- Gallery content -->
+<div class="w3-content" style="max-width:1564px; padding:128px 16px" id="gallery">
+    <h1 class="w3-center">GALLERY</h1>
+    
+ 
+
+            <p class="w3-large w3-center">Our most popular dishes!</p>
+    
+      <div class="w3-row-padding">
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Nachos</div>
+            <img src="assets/food/nachos.jpeg" alt="Nachos" style="width:100%"  onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Tacos</div>
+            <img src="assets/food/tacos2.jpeg" alt="Tacos" style="width:100%"  onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Enchilasas</div>
+            <img src="assets/food/enchilada.jpeg" alt="Enchiladas" style="width:100%"  onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Carne Asada</div>
+            <img src="assets/food/carne.jpeg" alt="Carne Asada" style="width:100%"  onclick="onClick(this)">
+          </div>
+        </div>
+      </div>
+    
+      <div class="w3-row-padding">
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Fajitas</div>
+            <img src="assets/food/fajitas.jpeg" alt="Fajitas" style="width:99%"  onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Guisado</div>
+            <img src="assets/food/guisado.jpeg" alt="Guisado" style="width:99%" onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Quesadila</div>
+            <img src="assets/food/quesadilla.jpeg" alt="Cheese Quesadilla" style="width:99%" onclick="onClick(this)">
+          </div>
+        </div>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-back-yellow w3-padding">Stephen Special</div>
+            <img src="assets/food/stephenspecial.jpeg" alt="Stephen Special" style="width:99%" onclick="onClick(this)">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-light-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-xxlarge w3-light-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption" class="w3-opacity w3-large"></p>
+    </div>
+  </div>
+
+
+    <!-- Pricing Section -->
+    <div class="w3-container w3-center back-pastelito" style="padding:128px 16px" id="catering">
+        <h1 class="w3-center">CATERING</h1>
+
+        <p class="w3-large">Give us a call and let us help make your event a success! </p>
+        <div class="w3-half w3-container">
+            <div >
+               <h3><b>BREAKFAST BUFFET..........$15.95 PER PERSON</b></h3> 
+               <h5> Migas, Scrambled Eggs, Bacon/Sausage, Refried Beans, Build a Breakfast Taco, Tostadas, Salsa, Shredded Cheese Tortillas.</h5>
+               
+            </div>
+            <br>
+            <br>
+            <div>
+                <h3><b>ENCHILADA BUFFET..........$13.95 PER PERSON</b></h3> 
+                <h5> Two types of Enchiladas, Crispy Beef Tacos, Spanish Rice, Refried Beans, Tostadas & Salsa.</h5>
+                
+             </div>
+             
+        </div>
+
+        <div class="w3-half w3-container">
+                <h3><b>FAJITA BUFFET..........$17.95 PER PERSON</b></h3> 
+                <h5> Beef or Chicken Fajitas with Grilled Onions & Peppers, Flour Tortillas, Spanish Rice, Refried Beans, Pico de Gallo, Shredded Cheese, Guacamole, Chips & Salsa. </h5>
+                <br>
+                <br>
+           <div>
+                <h3><b>CARNITAS TACO BUFFET..........$13.95 PER PERSON</b></h3> 
+                <h5> Smoked Carnitas, Flour and corn Tortillas, Spanish Rice, Refried Beans, Pico de Gallo, Tostadas, Salsa & Green Sauce.</h5>
+                
+             </div>
+
+            </div>
+      
+    </div>
+
+
+
+    <!-- Contact Section -->
+    <!-- The Contact Section -->
+
+    <div class="bgimg-2 w3-display-container" id="home">
+
+
+    </div>
+
+
+
+
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+        <h1 class="w3-wide w3-center">CONTACT</h1>
+        <p class="w3-opacity w3-center">
+            <i>Questions? Dont hesitage to call us!</i>
+        </p>
+        <div class="w3-row w3-padding-32">
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+                <i class="fa fa-map-marker" style="width:30px"></i> NWA
+                <br>
+                <i class="fa fa-phone" style="width:30px"></i> (XXX) - xxx - xxxx
+                <br>
+                <i class="fa fa-envelope" style="width:30px"> </i> Email@gmail.com
+                <br>
+            </div>
+            <div class="w3-col m6">
+
+
+
+                <form class="body-text" method="POST" action="https://formspree.io/ckhansen928@gmail.com">
+                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                        <div class="w3-half">
+                            <input class="w3-input w3-border" style="margin-bottom:10px;" type="text" placeholder="Name" required name="name">
+                        </div>
+                        <div class="w3-half">
+                            <input class="w3-input w3-border" type="email" placeholder="Email" required name="email">
+                        </div>
+                        <div class="w3-half">
+                            <input class="w3-input w3-border" style="margin-top:10px;" type="tel" placeholder="Phone" required name="tel">
+                        </div>
+                    </div>
+                  
+                    <input class="w3-input w3-border" style="margin-top:10px;" type="text" placeholder="Your Message" required name="message">
+                    <button class="w3-button w3-blueish w3-section w3-right" style="border-radius: 5px;" type="submit">SEND</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Page Content -->
+
+
+
+    <!-- Footer -->
+    <footer class="back-red-pastel w3-padding-24">
+        <div class="w3-center">
+            <a href="#home" class="w3-button">
+                <i class="fa fa-arrow-up w3-margin-right"></i>
+            </a>
+            <p>© XXXX Acambaro Restaurant
+                <p>2019, Powered by <a href="https://www.cafeconmau.com" target="_blank">Cafe Con Mau Designs</a> </p>
+        </div>
+
+    </footer>
+
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+        }
+
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru  
+            var uluru = {
+                lat: 30.266926,
+                lng: -97.750519
+            };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), {
+                    zoom: 8,
+                    center: uluru
+                });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -308,11 +308,9 @@ a {
     }
     .back-red-pastel {
         background-position: center;
-        background-image: url("assets/pastel2_wallpaper.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
+        background-image: url("assets/pastel2_wallpaper.jpg");      
       width: 100%;
-      height: 30%;
+      
     }
 
     .back-pastelito {

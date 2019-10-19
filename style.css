@@ -337,7 +337,7 @@ a {
         background-size: cover;
         background-repeat: no-repeat;
       width: 100%;
-      height: 115%;
+      height: 120%;
     }
 
     .back-yellow {
@@ -376,7 +376,7 @@ a {
 
         @media (max-width: 650px) {
         .bgimg-2 {
-            background-image: url("assets/pattern_wallpaper.jpg");
+            background-image: url("assets/cristo.jpg");
             min-height: 100%;
             height: 100%;
             background-position: center;
